@@ -1,0 +1,99 @@
+{
+  "nodes": {
+    "flake-utils": {
+      "inputs": {
+        "systems": "systems"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1733212471,
+        "narHash": "sha256-M1+uCoV5igihRfcUKrr1riygbe73/dzNnzPsmaLCmpo=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "55d15ad12a74eb7d4646254e13638ad0c4128776",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": "nixpkgs",
+        "typix": "typix",
+        "typst-packages": "typst-packages"
+      }
+    },
+    "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "typix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1733323213,
+        "narHash": "sha256-5kzowYCY/keEeuFEnH+SHrjfTXL/viK0ODwUCPhYYYU=",
+        "owner": "loqusion",
+        "repo": "typix",
+        "rev": "28bb41fdcc052260a4c5f3f5fca4a61f5ad2dfea",
+        "type": "github"
+      },
+      "original": {
+        "owner": "loqusion",
+        "repo": "typix",
+        "type": "github"
+      }
+    },
+    "typst-packages": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1733330952,
+        "narHash": "sha256-dblRjY3LCkrmmIb7dhu1yOdbZLfDbLJwNN7mT9niz6E=",
+        "owner": "typst",
+        "repo": "packages",
+        "rev": "bae3d13dd34bce9afe09a13efbd20f2ef0fbfe4e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "typst",
+        "repo": "packages",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
