@@ -29,6 +29,7 @@
 #show figure.caption: emph
 
 #let vec = sym => math.bold(math.upright(sym))
+#let unit = sym => math.hat(vec(sym))
 
 #title-slide()
 
@@ -68,6 +69,19 @@
 #pause
 
 - When we say that a manifold "looks like" a Euclidean space, we're actually talking about *homeomorphism*
+
+== Homeomorphisms
+
+#grid(
+  columns: (350pt, auto),
+  rows: auto,
+  grid.cell()[
+    #image("assets/local.png", height: 75%)
+  ],
+  grid.cell()[
+  	#image("assets/homeomorphism.png", height: 75%)
+  ]
+)
 
 == General Topology
 
@@ -553,7 +567,7 @@ More on 0 space later ...
 
 == Properties of Boundaries
 
-*The boundary of a $k$ manifold is a closed $k-1$ manifold*
+*The boundary of a $k$ manifold is a set of closed $k-1$ manifolds*
 
 #pause
 
@@ -567,7 +581,7 @@ If you're interested:
 
 #text(size: 14pt)[
 our definition $=> exists space phi: U -> HH^k$ where $U$ is the neighborhood of points around some $P in partial M$ and $HH^k$ is a half $k$ ball, formally defined as $HH^k = {x in RR^k | x_k >= 0}$ for some intrinsic coordinate system where $x_k = 0$ for points along the boundary in $U$ (otherwise a local neighborhood around these points would be homeomorphic to $RR^k$, not $HH^k$).\*
-Thus, $partial M$ is homeomorphic to ${x in HH^k | x_k = 0}$, which is homeomorphic to $RR^(k-1)$ (simply reparameterize by eliminating $x_k$ and keeping all other parameters the same--for the inverse map add $x_k = 0$).
+Thus, $partial M$ (around $P$) is homeomorphic to ${x in HH^k | x_k = 0}$, which is homeomorphic to $RR^(k-1)$ (simply reparameterize by eliminating $x_k$ and keeping all other parameters the same--for the inverse map add $x_k = 0$).
 We'll later see how to prove this boundary is closed using Generalized Stokes Theorem!\
 
 #v(6pt)
@@ -768,4 +782,399 @@ knowing a fundamental truth of the universe.
 
 = Some Examples
 
+== Deriving Stokes Theorem from Generalized Stokes Theorem
+
+Let's consider what Stokes Theorem tells us about a 2 manifold in 3 space:
+
+#pause
+
+$ integral_(partial M^1 subset RR^3) omega = integral_(M^2 subset RR^3) d omega $
+
+#sym.arrow.t Abuse of notation to demonstrate what we mean
+
+#pause
+
+We know $omega$ must be a 1 form, but this isn't helpful until we can assign a value to $omega$.
+To keep things simple, let's make the left-hand integral and line integral, so:
+
+$omega = f(x,y,z) space d x + g(x,y,z) space d y + h(x,y,z) space d z$
+
+$integral_(partial M) omega = integral_C vec(F) dot d vec(r)$ where $vec(F) = angle.l f(x,y,z), g(x,y,z), h(x,y,z) angle.r$
+
+== Stokes Theorem, Revisited
+
+We then have:
+
+$d omega = (f_y space d y + f_z space d z) and d x + (g_x space d x + g_z space d z) and d y + (h_x space d x + h_y space d y) and d z$\
+$d omega = (g_x - f_y) space d x and d y + (f_z - h_x) space d z and d x + (h_y - g_z) space d y and d z $
+
+#pause
+
+Hey that looks familiar!
+
+#pause
+
+$d omega = op("curl")(vec(F)) dot unit(n) space d S$
+
+It's the *flux* of the *curl* of $vec(F)$!!
+
+#pause
+
+By Generalized Stokes,
+
+$ integral_(partial M) omega = integral_M d omega => integral_C vec(F) dot d vec(r) = integral_S op("curl")(vec(F)) dot unit(n) space d S $
+
+== An Interesting Example Involving Stokes Theorem
+
+#let C1 = text(fill: rgb("#388c46"))[$bold(C_1)$]
+#let C2 = text(fill: rgb("#fa7e19"))[$bold(C_2)$]
+
+#grid(
+  columns: (300pt, auto),
+  rows: auto,
+  grid.cell()[
+    #image("assets/cylinder.png", width: 90%)
+  ],
+  grid.cell()[
+    - Using a clever choice of $vec(F)$, we will show that the orientation of the boundaries at opposite ends of a cylinder are opposite each other.
+
+    - Note that $partial M$ consists of two manifolds #C1, #C2
+
+    - $integral_(partial M) omega = epsilon_1 integral_(#C1) omega + epsilon_2 integral_(#C2) omega$ where $epsilon_1$, $epsilon_2$ are the orientations of #C1 and #C2, respectively
+  ]
+)
+
+== Orientation Theory
+
+We want to show $epsilon_1 = -epsilon_2$ or $epsilon_1 + epsilon_2 = 0$.
+
+#pause
+
+If we could write $epsilon_1 integral_(#C1) omega + epsilon_2 integral_(#C2) omega$ as $(epsilon_1 + epsilon_2) integral_C omega$ for some $C$, then we derive a constraint for $epsilon_1 + epsilon_2$ using Stokes Theorem.
+For this to happen, we need $integral_(#C1) omega = integral_(#C2) omega = integral_C omega$ (i.e. the line integral of $vec(F)$ over either #C1 or #C2 gives the same result.
+
+#pause
+
+#v(12pt)
+
+This tells us $vec(F)$ is independent of $z$.
+Since #C1 and #C2 occupy the same region of $x y$ space, if $vec(F)$ depends only on these two parameters, the line integrals over #C1 and #C2 are equivalent and we can factor our $epsilon_1 + epsilon_2$ from the boundary integral.
+
+== Stokes Theorem and Orientation
+
+For some $vec(F)(x,y)$ on $M$, Stokes Theorem tells us
+
+$integral_(partial M) omega = epsilon_1 integral_(#C1) omega + epsilon_2 integral_(#C2) omega = (epsilon_1 + epsilon_2) integral_(#C1) omega = integral_M d omega = integral_S op("curl")(vec(F)) dot unit(n) space d S$
+
+#pause
+
+If $epsilon_1 + epsilon_2 = 0$ as we supposed,
+
+$(epsilon_1 + epsilon_2) integral_(#C1) omega = 0 = integral_S op("curl")(vec(F)) dot unit(n) space d S$
+
+#pause
+
+Hence, in order to prove $epsilon_1 + epsilon_2 = 0$, we must choose $vec(F)(x,y) | integral_S op("curl")(vec(F)) dot unit(n) space d S = 0$.\
+The beauty of this is that we can choose _any_ differential form $omega$ and Generalized Stokes Theorem must still hold (in the case of the 3-dimensional Stokes Theorem, it means we can choose any $vec(F)$ since the abstraction of differential forms has been thrown out).
+
+== Completing the Proof (Example)
+
+#let F_S = text(fill: rgb("#6042a6"))[$op("curl")(vec(F))$]
+#let n_S = text(fill: rgb("#c6433f"))[$unit(n)$]
+
+#grid(
+  columns: (300pt, auto),
+  rows: auto,
+  grid.cell()[
+  	#image("assets/field.png")
+  ],
+  grid.cell()[
+  	- Consider #F_S pointing vertically upward (or downward)
+
+	#pause
+
+  	- We see that $#F_S dot #n_S = 0$, so we must have $integral_S #F_S dot #n_S space d S = 0$
+
+	#pause
+
+  	- When is this true? Whenever $vec(F)$ lies in the $x y$ plane (i.e. $h = 0 | h_x, h_y, h_z = 0$ and, by the fact that $vec(F)$ is a function of $x$ and $y$ only, $f_z, g_z = 0$).
+  ]
+)
+
+== Recap of Stokes Theorem Example
+
+- We found that some $vec(F)$ exists such that $integral_M d omega = 0$, so we conclude that $integral_(partial M) omega = 0$, by Stokes Theorem
+
+#pause
+
+- We can divide $partial M$ into two boundaries and, since the integral of $omega$ over both is the same, we can factor out the sum of the boundary orientations $epsilon_1 + epsilon_2$
+
+#pause
+
+- The fact that $integral_(partial M) = 0$ implies $epsilon_1 + epsilon_2 = 0 => epsilon_1 = -epsilon_2$
+
+#pause
+
+- *Therefore, the boundaries at opposite ends of a cylinder have opposite orientations*!
+
+== The Power of Stokes
+
+#figure(
+  caption: [Literally the sole use of Stokes Theorem\ (not _Generalized Stokes Theorem_, which is much more powerful, as we'll see)]
+)[
+  #image("assets/stonks.png", height: 80%)
+]
+
 = Applications?
+
+== Reality Check
+
+#quote(attribution: "Eric Temple Bell")[
+  Guided only by their feeling for symmetry, simplicity, and generality, and an indefinable sense of the fitness of things, creative mathematicians now, as in the past, are inspired by the art of mathematics rather than by any prospect of ultimate usefulness.
+]
+
+#pause
+
+*Questions we must answer*:
+
+- Is Stokes Theorem truly useless?
+
+- Have we as mathematicians failed in our quest to understand the universe?
+
+- What is the nature of spacetime?
+
+== The Nature of Manifolds and their Boundaries
+
+To appreciate the true power of Stokes Theorem, consider this trivial application:
+
+$ integral_(partial (partial M)) omega = integral_(partial M) d omega = integral_M d (d omega) = integral_M 0 = 0$
+
+#pause
+
+Therefore, we have concluded
+
+$ integral_(partial (partial M)) omega = 0 space forall omega$
+
+#pause
+
+In other words, the integral of _anything_ over the boundary of the boundary of _any_ manifold $M$ is zero.
+This is only possible if the manifold we are integrating over is the empty set $emptyset$.
+
+== Closed Manifold Boundaries
+
+Thus, the boundary of a manifold's boundary doesn't exist.
+
+#pause
+
+Phrased differently,
+
+#tblock(title: "Proposition of Closed Manifold Boundaries")[
+  The boundary of any manifold $M$, $partial M$, is *closed*.
+]
+
+where we say that a manifold is "closed" if it has no boundary.
+
+#pause
+
+Remember when we stated this?? (and didn't prove it)
+
+== The Superiority of Generalized Stokes
+
+#grid(
+  columns: (500pt, auto),
+  rows: auto,
+  grid.cell()[
+  	#image("assets/geometric-algebra.png", height: 67.5%)
+  ],
+  grid.cell()[
+  	#image("assets/topos.jpg", height: 67.5%)
+  ]
+)
+
+=== Higher Topological Powers
+
+#figure(caption: "You have been lied to through all of calculus")[
+  #image("assets/astronaut.png", height: 75%)
+]
+
+== Speedrunning Calculus with Generalized Stokes Theorem
+
+"Novel" theorems (for higher-dimensional manifolds):
+
+- Divergence Theorem
+  - $M$ is a 3 manifold in 3 space
+- Stokes Theorem (already derived)
+  - $M$ is a 2 manifold in 3 space
+- Green's Theorem
+  - $M$ is a 2 manifold in 2 space
+
+#pause
+
+"Degenerate" theorems (for one or zero dimensional manifolds):
+  
+- Fundamental Theorem of Calculus
+  - $M$ is a 1 manifold in 1 space
+
+== Divergence Theorem
+
+#v(16pt)
+
+*$M$ is a 3 manifold in 3 space*
+
+#pause
+
+Let $omega = vec(F) dot angle.l d y and d z, d z and d x, d x and d y angle.r$ (2 form in 3 space), integrated over $partial M$
+
+#pause
+
+Compute $d omega$ to find $d omega = op("div")(vec(F)) space d x and d y and d z$
+
+#pause
+
+$M$ is a volume $V$, $partial M$ is its surface $S$, $omega$ is the flux of $vec(F)$ through $S$: $vec(F) dot unit(n) space d S$, $d omega = op("div")(vec(F)) space d V$
+
+#pause
+
+$ integral_(partial M) omega = integral_M d omega $
+
+#pause
+
+$ integral.double_S vec(F) dot unit(n) space d S = integral.triple_V op("div")(vec(F)) space d V $
+#h(1fr)
+$qed$
+
+== Green's Theorem
+
+#v(16pt)
+
+*$M$ is a 2 manifold in 2 space*
+
+#pause
+
+Let $omega = vec(F) dot angle.l d x, d y angle.r$ (1 form in 2 space), integrated over $partial M$
+
+#pause
+
+Compute $d omega$ to find $d omega = op("curl")(vec(F)) space d x and d y$
+#h(12pt)
+#text(size: 12pt)[(here we only consider the $z$ component of curl, $N_x - M_y$)]
+
+#pause
+
+$M$ is an area $A$, $partial M$ is a curve $C$, $omega$ is the line integral of $vec(F)$ over $C$: $vec(F) dot d vec(r)$, $d omega = op("curl")(vec(F)) space d A$
+
+#pause
+
+$ integral_(partial M) omega = integral_M d omega $
+
+$ integral_C vec(F) dot d vec(r) = integral.double_A op("curl")(vec(F)) space d A $
+#h(1fr)
+$qed$
+
+== The Fundamental Theorem of Calculus
+
+*$M$ is a 1 manifold in 1 space*
+
+#pause
+
+Let $omega = f(x)$ (0 form in 0 space), integrated over $partial M$
+
+#pause
+
+Compute $d omega$ to find $d omega = f'(x) space d x$
+
+#pause
+
+$M$ is an interval $[a, b]$, $partial M$ is a set of points ${a, b}$ with orientations ${epsilon_a, epsilon_b}$, $omega$ is the integral of $f(x)$ over that set of oriented points, $d omega = f'(x) space d x$
+
+== Integration over the Zero Manifold
+
+An integral over a continuous manifold is an infinite (Riemann) sum, where at each point we multiply the integrand by $d x$.
+Essentially, we evaluate our differential form $omega$ at each point, but make sure to choose a positive orientation for all points in the manifold.
+If a point is negatively oriented, we obtain the negative of the integral over the positively oriented point, so we multiply that integral by $-1$ to obtain the "positively oriented" integral value.
+
+#pause
+
+== Orientation of the Zero Manifold
+
+=== What is the orientation of $bold({a, b})$ when $bold(d x)$ points from $bold(a)$ to $bold(b)$?
+
+#pause
+
+#v(24pt)
+
+#cetz.canvas({
+  import cetz.draw: *
+  import cetz-plot: *
+
+  line((-4, 0), (14, 0), mark: (start: "stealth", end: "stealth"))
+  line((1, 0.25), (1, -0.25))
+  line((9, 0.25), (9, -0.25))
+
+  line((1, 0), (4, 0), mark: (end: "stealth"), stroke: 4pt + blue)
+  content((1+3/2, 1))[$d x$]
+
+  line((1, 0), (-2, 0), mark: (end: "stealth"), stroke: 4pt + orange)
+  content((1-3/2, 1))[$unit(n_a)$]
+
+  line((9, 0), (12, 0), mark: (end: "stealth"), stroke: 4pt + orange)
+  content((9+3/2, 1))[$unit(n_b)$]
+
+  content((1, -1))[$a$]
+  content((9, -1))[$b$]
+})
+
+#v(12pt)
+
+#pause
+
+Expressing $unit(n_a)$ in terms of $d x$ leads to a negative coefficient, so the orientation of $a$ is negative.
+$unit(n_b)$ points in the same direction as $d x$, so it will have a positive coefficient when expressed as a multiple of $d x$, meaning it has positive orientation.
+
+#pause
+
+Notice how $a^+$ and $b^-$ have opposite orientations--*just like the cylinder!*
+
+== Deriving the Fundamental Theorem of Calculus
+
+$integral_(partial M) omega = integral_M d omega$\
+$integral_{a, b} f(x) = integral_[a, b] f'(x) space d x$
+
+#pause
+
+#v(12pt)
+
+We let $epsilon_a = -1$ and $epsilon_b = 1$ and evaluate the left integral:
+
+$integral_{a, b} f(x) = epsilon_a f(a) + epsilon_b f(b) = -f(a) + f(b) = f(b) - f(a)$
+
+#pause
+
+#v(12pt)
+
+Thus,
+
+$ f(b) - f(a) = integral_a^b f'(x) space d x $
+#h(1fr)
+$qed$
+
+== Final Words
+
+#quote(attribution: "John Baez")[
+  Category theory is the subject where you can leave the
+  definitions as exercises.
+]
+
+#pause
+
+#figure()[
+  #image("assets/dirac.png", height: 60%)
+]
+
+== Thank you!
+
+#figure(
+  caption: "I'll try my best to avoid it"
+)[
+  #image("assets/postdoc.jpg", height: 90%)
+]
