@@ -1011,7 +1011,7 @@ Remember when we stated this?? (and didn't prove it)
 #pause
 
 "Degenerate" theorems (for one or zero dimensional manifolds):
-  
+
 - Fundamental Theorem of Calculus
   - $M$ is a 1 manifold in 1 space
 
@@ -1178,3 +1178,13 @@ $qed$
 )[
   #image("assets/postdoc.jpg", height: 90%)
 ]
+
+#bibliography("refs.bib", title: "References", full: true, style: "chicago-author-date")
+
+== Other References
+
+- Separate discussions with Evan Chen PhD \u{0027}25 and Angelo Farfan \u{0027}28
+
+- MIT OpenCourseWare 18.02 Lecture on Stokes Theorem
+
+- Mathematical Folklore
