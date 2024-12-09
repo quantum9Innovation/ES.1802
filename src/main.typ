@@ -14,8 +14,7 @@
     subtitle: [
       "We'll only use as much category theory as is necessary.\ [_famous last words_]"
       --Roman Abramovich
-      #footnote[Attribution:
-        #link("https://christiansaemann.de/talksfolder/5.12.2017%20Dublin%20Institute%20for%20Advanced%20Studies.pdf")["Higher Gauge Theory: The Fundamentals"] (quote is almost certainly misattributed to a Russian oligarch instead of the algebraic geometrist who is likely responsible for it)
+      #footnote[Attribution: @samann_m5-brane_2017 (quote is almost certainly misattributed to a Russian oligarch instead of the algebraic geometer who is likely responsible for it)
       ]
     ],
     author: [Ananth Venkatesh],
@@ -226,7 +225,7 @@ Determinants tell you how much the area of a unit square scales under some linea
 
 #pause
 
-- Wedge products between any two vectors $vec(a)$ and $vec(b)$ exist in a vector space (we are free to define the basis vectors, but they look like some wedge product, e.g. $vec(e_1) and vec(e_2)$
+- Wedge products between any two vectors $vec(a)$ and $vec(b)$ exist in a vector space (we are free to define the basis vectors, but they look like some wedge product, e.g. $vec(e_1) and vec(e_2)$)
 
 == Multivolumes
 
@@ -234,7 +233,7 @@ Determinants tell you how much the area of a unit square scales under some linea
 
 #pause
 
-#text(size: 12pt)[Not technically true, as we'll see later--we're actually dealing with signed multivolumes]
+#text(size: 12pt)[\*Not technically true, as we'll see later--we're actually dealing with signed multivolumes]
 
 #pause
 
@@ -330,7 +329,7 @@ There are therefore $mat(n; 2)$ differentials that make up the 2-form in $n$ spa
 
 #v(12pt)
 
-$integral space (f_1(u, v) space d vec(e_1) and vec(e_2) + dots.h.c + f_2(u, v) space d vec(e_1) and vec(e_n) + dots.h.c + f_(n)(u, v) space d vec(e_(n-1)) and vec(e_n)) $
+$integral space (f_1(u, v) space d vec(e_1) and vec(e_2) + dots.h.c + f_(n)(u, v) space d vec(e_1) and vec(e_n) + dots.h.c + f_(mat(n; 2))(u, v) space d vec(e_(n-1)) and vec(e_n)) $
 
 == Flux
 
@@ -625,7 +624,7 @@ We'll later see how to prove this boundary is closed using Generalized Stokes Th
 
     #pause
 
-    - For each parameter defining $partial M$ (in this case there is only one, $t$), draw the tangent vector $T$ (which for this $M$ we can write as $(d vec(r))/(d t) d t$ where $vec(r)$ is the mapping from 1-dimensional $t$ space to the $partial M$ manifold embedded in 2 space
+    - For each parameter defining $partial M$ (in this case there is only one, $t$), draw the tangent vector $T$ (which for this $M$ we can write as $(d vec(r))/(d t) d t$ where $vec(r)$ is the mapping from 1-dimensional $t$ space to the $partial M$ manifold embedded in 2 space)
 
     #pause
 
@@ -650,11 +649,11 @@ Summarizing what we did, for an $n$ manifold in $n$ space:\
 
 #pause
 
-- Since $partial M$ is a $n - 1$ manifold, there exists some parameterization $phi(x_1, ..., x_(n-1)): RR^(n-1) -> RR^n$
+- Since $partial M$ is an $n - 1$ manifold, there exists some parameterization $phi(x_1, ..., x_(n-1)): RR^(n-1) -> RR^n$
 
 #pause
 
-- Consider all tangent vectors of the form $vec(T_(x_i))$, given by $(partial vec(phi))/(partial x_i) x_i$
+- Consider all tangent vectors of the form $vec(T_(x_i))$, given by $(partial vec(phi))/(partial x_i) space d x_i$
 
 #pause
 
@@ -662,7 +661,7 @@ Summarizing what we did, for an $n$ manifold in $n$ space:\
 
 #pause
 
-- Express $vec(n) and T_(x_1) and ... and T_(x_(n-1))$ in the form $A space T_(x_1) and ... and T_(x_n)$ where $d T_(x_1) and ... and d T_(x_n)$ is the canonical positive orientation of $M$
+- Express $vec(n) and T_(x_1) and ... and T_(x_(n-1))$ in the form $A space d vec(e_1) and ... and d vec(e_n)$ where $d vec(e_1) and ... and d vec(e_n)$ is the canonical positive orientation of $M$
 
 #pause
 
@@ -725,7 +724,7 @@ $d omega = (nabla f dot cal(D)) and d y and d z + (nabla g dot cal(D)) and d z a
 
 #pause
 
-Terms of the form $d a and ... and d a ... and d b = 0$, so we exclude them:
+Terms of the form $d a and ... and d a and ... and d b = 0$, so we exclude them:
 
 #pause
 
@@ -795,7 +794,7 @@ $ integral_(partial M^1 subset RR^3) omega = integral_(M^2 subset RR^3) d omega 
 #pause
 
 We know $omega$ must be a 1 form, but this isn't helpful until we can assign a value to $omega$.
-To keep things simple, let's make the left-hand integral and line integral, so:
+To keep things simple, let's make the left-hand integral a line integral, so:
 
 $omega = f(x,y,z) space d x + g(x,y,z) space d y + h(x,y,z) space d z$
 
@@ -851,14 +850,14 @@ We want to show $epsilon_1 = -epsilon_2$ or $epsilon_1 + epsilon_2 = 0$.
 #pause
 
 If we could write $epsilon_1 integral_(#C1) omega + epsilon_2 integral_(#C2) omega$ as $(epsilon_1 + epsilon_2) integral_C omega$ for some $C$, then we derive a constraint for $epsilon_1 + epsilon_2$ using Stokes Theorem.
-For this to happen, we need $integral_(#C1) omega = integral_(#C2) omega = integral_C omega$ (i.e. the line integral of $vec(F)$ over either #C1 or #C2 gives the same result.
+For this to happen, we need $integral_(#C1) omega = integral_(#C2) omega = integral_C omega$ (i.e. the line integral of $vec(F)$ over either #C1 or #C2 gives the same result).
 
 #pause
 
 #v(12pt)
 
 This tells us $vec(F)$ is independent of $z$.
-Since #C1 and #C2 occupy the same region of $x y$ space, if $vec(F)$ depends only on these two parameters, the line integrals over #C1 and #C2 are equivalent and we can factor our $epsilon_1 + epsilon_2$ from the boundary integral.
+Since #C1 and #C2 occupy the same region of $x y$ space, if $vec(F)$ depends only on these two parameters, the line integrals over #C1 and #C2 are equivalent and we can factor out $epsilon_1 + epsilon_2$ from the boundary integral.
 
 == Stokes Theorem and Orientation
 
@@ -911,7 +910,7 @@ The beauty of this is that we can choose _any_ differential form $omega$ and Gen
 
 #pause
 
-- The fact that $integral_(partial M) = 0$ implies $epsilon_1 + epsilon_2 = 0 => epsilon_1 = -epsilon_2$
+- The fact that $integral_(partial M) omega = 0$ implies $epsilon_1 + epsilon_2 = 0 => epsilon_1 = -epsilon_2$
 
 #pause
 
